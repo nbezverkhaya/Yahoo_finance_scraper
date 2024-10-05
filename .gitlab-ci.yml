@@ -1,11 +1,10 @@
-image: python:3.9-slim
+image: selenium/standalone-chrome:latest
 
 stages:
   - test
 
 test:
   stage: test
-  before_script:
-    - pip install -r requirements.txt  # Встановлюємо залежності
   script:
+    - pip install -r requirements.txt  # Встановлюємо залежності
     - python -m unittest discover -s tests -p '*_test.py'
