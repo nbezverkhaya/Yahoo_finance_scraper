@@ -1,4 +1,4 @@
-image: python:latest  # Вказуємо образ Python
+image: python:3.12  # Вказуємо конкретну версію Python
 
 stages:
   - test
