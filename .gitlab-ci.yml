@@ -1,15 +1,9 @@
-image: selenium/standalone-chrome:latest
+image: your_docker_image:latest  # Змініть на ваше ім'я образу
 
 stages:
   - test
 
 test:
   stage: test
-  services:
-    - name: selenium/standalone-chrome:latest
-      alias: chrome
-  before_script:
-    - apt-get update && apt-get install -y python3 python3-pip  # Встановлюємо Python і pip
-    - pip3 install -r requirements.txt  # Встановлюємо залежності
   script:
     - python3 -m unittest discover -s tests -p '*_test.py'

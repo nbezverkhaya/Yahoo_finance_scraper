@@ -1,12 +1,18 @@
-FROM selenium/standalone-chrome:latest
+FROM python:3.9-slim  # Використовуємо базовий образ Python
 
-# Встановлюємо Python та pip
-USER root
-RUN apt-get update && apt-get install -y python3 python3-pip
+# Встановлюємо потрібні пакунки
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Встановлюємо залежності
-COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+# Встановлюємо Selenium і WebDriver Manager
+RUN pip install selenium webdriver-manager
 
-USER seluser
+# Копіюємо ваш код у контейнер
+WORKDIR /app
+COPY . .
+
+# Запускаємо тести
+CMD ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "*_test.py"]
 
