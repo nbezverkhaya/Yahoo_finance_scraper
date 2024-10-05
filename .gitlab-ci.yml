@@ -1,12 +1,15 @@
+image: selenium/standalone-chrome:latest
+
 stages:
   - test
 
 test:
-  image: selenium/standalone-chrome:latest
   stage: test
   services:
     - name: selenium/standalone-chrome:latest
       alias: chrome
+  before_script:
+    - apt-get update && apt-get install -y python3 python3-pip  # Встановлюємо Python і pip
+    - pip3 install -r requirements.txt  # Встановлюємо залежності
   script:
-    - pip install -r requirements.txt
-    - python -m unittest discover -s tests
+    - python3 -m unittest discover -s tests -p '*_test.py'
