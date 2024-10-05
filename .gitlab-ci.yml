@@ -1,7 +1,23 @@
 image: python:3.11
 
 before_script:
-  - apt-get update && apt-get install -y python3-distutils
+  - apt-get update && apt-get install -y \
+      python3-distutils \
+      chromium \
+      chromium-driver \
+      wget \
+      gnupg2 \
+      unzip \
+      libnss3 \
+      libgconf-2-4 \
+      libxi6 \
+      libxrender1 \
+      libxrandr2 \
+      libgtk-3-0 \
+      libxss1 \
+      fonts-liberation \
+      libappindicator3-1 \
+      libasound2
 
 stages:
   - test
@@ -10,7 +26,6 @@ test:
   stage: test
   image: python:3.11
   script:
-    - apt-get update && apt-get install -y python3-distutils
     - echo "Installing dependencies..."
     - pip install --upgrade pip
     - pip install -r requirements.txt
