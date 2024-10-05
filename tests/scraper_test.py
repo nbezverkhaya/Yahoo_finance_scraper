@@ -1,4 +1,3 @@
-#123
 import unittest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -54,6 +53,11 @@ class TestYahooFinance(unittest.TestCase):
     def tearDown(self):
         # Закриття браузера після завершення тестів
         self.driver.quit()
+
+class BasicTest(unittest.TestCase):
+    def test_basic(self):
+        # Простий тест для перевірки роботи unittest
+        self.assertEqual(1 + 1, 2, "1 + 1 має дорівнювати 2")
 
 if __name__ == "__main__":
     unittest.main()

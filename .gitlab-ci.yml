@@ -1,11 +1,12 @@
-image: selenium/standalone-chrome:latest
-
 stages:
   - test
 
-test-job:
+test:
+  image: selenium/standalone-chrome:latest
   stage: test
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: chrome
   script:
     - pip install -r requirements.txt
-    - python -m unittest discover
-
+    - python -m unittest discover -s tests
