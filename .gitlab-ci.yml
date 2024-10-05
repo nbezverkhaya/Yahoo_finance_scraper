@@ -1,10 +1,10 @@
-image: selenium/standalone-chrome:latest
-
 stages:
   - test
 
 test:
   stage: test
   script:
-    - pip install -r requirements.txt  # Встановлюємо залежності
+    - echo "Installing dependencies..."
+    - pip install -r requirements.txt
+    - echo "Running tests..."
     - python -m unittest discover -s tests -p '*_test.py'
