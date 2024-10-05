@@ -1,9 +1,11 @@
-image: your_docker_image:latest  # Змініть на ваше ім'я образу
+image: python:3.9-slim
 
 stages:
   - test
 
 test:
   stage: test
+  before_script:
+    - pip install -r requirements.txt  # Встановлюємо залежності
   script:
-    - python3 -m unittest discover -s tests -p '*_test.py'
+    - python -m unittest discover -s tests -p '*_test.py'
