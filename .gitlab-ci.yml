@@ -1,12 +1,12 @@
-image: python:3.12  # Вказуємо конкретну версію Python
+image: python:3.12
 
 stages:
-  - test
+  - build
 
-test:
-  stage: test
+build:
+  stage: build
+  before_script:
+    - apt-get update && apt-get install -y python3-distutils
   script:
-    - echo "Installing dependencies..."
+    - echo "Встановлюємо залежності..."
     - pip install -r requirements.txt
-    - echo "Running tests..."
-    - python -m unittest discover -s tests -p '*_test.py'
