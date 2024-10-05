@@ -1,12 +1,15 @@
 image: python:3.12
 
-stages:
-  - build
+before_script:
+  - apt-get update && apt-get install -y python3-distutils
 
-build:
-  stage: build
-  before_script:
-    - apt-get update && apt-get install -y python3-distutils
+stages:
+  - test
+
+test_job:
+  stage: test
   script:
-    - echo "Встановлюємо залежності..."
+    - echo "Installing dependencies..."
     - pip install -r requirements.txt
+    - echo "Running tests..."
+    - python -m unittest discover
