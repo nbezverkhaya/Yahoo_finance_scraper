@@ -1,4 +1,24 @@
-iimage: selenium/standalone-chrome:latest
+image: debian:bookworm
+
+before_script:
+  - apt-get update && apt-get install -y \
+      python3 \
+      python3-pip \
+      wget \
+      gnupg2 \
+      unzip \
+      chromium \
+      chromium-driver \
+      libnss3 \
+      libgconf-2-4 \
+      libxi6 \
+      libxrender1 \
+      libxrandr2 \
+      libgtk-3-0 \
+      libxss1 \
+      fonts-liberation \
+      libappindicator3-1 \
+      libasound2
 
 stages:
   - test
@@ -10,4 +30,4 @@ test:
     - pip3 install --upgrade pip
     - pip3 install -r requirements.txt
     - echo "Running tests..."
-    - python -m unittest discover -s tests
+    - python3 -m unittest discover -s tests
